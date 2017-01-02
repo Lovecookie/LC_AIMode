@@ -142,21 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ActionTask.h" />
-    <ClInclude Include="CondtionTask.h" />
-    <ClInclude Include="IObjectFactory.h" />
-    <ClInclude Include="BaseBehaviorFactory.h" />
-    <ClInclude Include="SelectTask.h" />
-    <ClInclude Include="SequenceTask.h" />
-    <ClInclude Include="ITaskNode.h" />
+    <ClInclude Include="BehaviorTree\ActionTask.h" />
+    <ClInclude Include="BehaviorTree\CondtionTask.h" />
+    <ClInclude Include="BehaviorTree\ITaskNode.h" />
+    <ClInclude Include="BehaviorTree\SelectTask.h" />
+    <ClInclude Include="BehaviorTree\SequenceTask.h" />
+    <ClInclude Include="Factory\BaseBehaviorFactory.h" />
+    <ClInclude Include="Factory\IObjectFactory.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseBehaviorFactory.cpp" />
+    <ClCompile Include="Factory\BaseBehaviorFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -164,6 +161,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

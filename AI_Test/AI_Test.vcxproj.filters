@@ -17,35 +17,32 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="IObjectFactory.h">
+    <ClInclude Include="BehaviorTree\ActionTask.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\CondtionTask.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\ITaskNode.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\SelectTask.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\SequenceTask.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\BaseBehaviorFactory.h">
       <Filter>Factory</Filter>
     </ClInclude>
-    <ClInclude Include="BaseBehaviorFactory.h">
+    <ClInclude Include="Factory\IObjectFactory.h">
       <Filter>Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ActionTask.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="CondtionTask.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="ITaskNode.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectTask.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="SequenceTask.h">
-      <Filter>BehaviorTree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,8 +52,18 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BaseBehaviorFactory.cpp">
+    <ClCompile Include="Factory\BaseBehaviorFactory.cpp">
       <Filter>Factory</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Filter>소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ReadMe.txt">
+      <Filter>소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>
