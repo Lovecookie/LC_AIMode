@@ -142,13 +142,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BehaviorTree\ActionTask.h" />
-    <ClInclude Include="BehaviorTree\CondtionTask.h" />
-    <ClInclude Include="BehaviorTree\ITaskNode.h" />
+    <ClInclude Include="BehaviorTree\IActionTask.h" />
+    <ClInclude Include="BehaviorTree\ICondtionTask.h" />
+    <ClInclude Include="BehaviorTree\TaskNode.h" />
     <ClInclude Include="BehaviorTree\SelectTask.h" />
     <ClInclude Include="BehaviorTree\SequenceTask.h" />
     <ClInclude Include="Factory\BaseBehaviorFactory.h" />
-    <ClInclude Include="Factory\IObjectFactory.h" />
+    <ClInclude Include="Factory\BaseFactoryObject.h" />
+    <ClInclude Include="Factory\FactoryObjectManagement.h" />
+    <ClInclude Include="Factory\IBehaviorFactory.h" />
+    <ClInclude Include="Factory\IFactoryObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

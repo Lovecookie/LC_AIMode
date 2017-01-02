@@ -2,20 +2,27 @@
 
 
 
-namespace bt
+namespace lcai
 {
+	class IBehaviorFactory;
+
 	/*
-	behivor selector
+		behivor selector
 	*/
-	class SelectTask
+	template<class FACTORY = IBehaviorFactory>
+	class SelectTask : public TaskNode<FACTORY>
 	{
 	public:
 
-		SelectTask() {};
+		SelectTask():TaskNode<FACTORY>() {}
 		virtual ~SelectTask() {};
 
-	private:
-
+		/*
+		*/
+		bool Process()
+		{
+			return _objectFactory->Process();
+		}
 	};
 
 }

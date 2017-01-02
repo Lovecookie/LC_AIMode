@@ -1,30 +1,29 @@
 #pragma once
 
+#include "IBehaviorFactory.h"
+#include "IFactoryObject.h"
 
-namespace bt
+namespace lcai
 {
-	/*
-	*/
-	template<class OBJECT>
-	class BaseBehaviorFactory : public IObjectFactory
+	namespace factory
 	{
-	public :
-		BaseBehaviorFactory();
-		virtual ~BaseBehaviorFactory();
+		/*
+		*/		
+		class BaseBehaviorFactory : public IBehaviorFactory
+		{
+		public:
+			BaseBehaviorFactory();
+			BaseBehaviorFactory(IFactoryObject* inputObject);
+			virtual ~BaseBehaviorFactory();
 
-		bool StartUp();
-		bool Processing();
-		bool Stop();
+			bool StartUp();
+			bool Processing();
+			bool Stop();
 
-		bool CleanUp();
+			bool CleanUp();
 
-	protected :
-		OBJECT* m_object;
-
-	};
-
-
-
-
-
+		protected:
+			IFactoryObject*	_factoryObject;
+		};
+	}
 }

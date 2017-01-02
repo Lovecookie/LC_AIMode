@@ -1,23 +1,26 @@
 #pragma once
 
 
-namespace bt
+namespace lcai
 {
+	class IBehaviorFactory;
+
 	/*
-	behivor sequencer
+		behivor sequencer
 	*/
-	template<class FACTORY = IObjectFactory>
-	class SequenceTask : public ITaskNode<FACTORY>
+	template<class FACTORY = IBehaviorFactory>
+	class SequenceTask : public TaskNode<FACTORY>
 	{
 	public :
-		SequenceTask():ITaskNode<FACTORY>() {}
+		SequenceTask():TaskNode<FACTORY>() {}
 		virtual ~SequenceTask() {}
 
-		virtual bool Process() { return true; }
-
-	private :
-
-
+		/*			
+		*/
+		bool Process()
+		{
+			return _objectFactory->Process();
+		}
 	};
 
 }

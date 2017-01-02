@@ -1,24 +1,33 @@
 #pragma once
 
 
-namespace bt
+
+
+namespace lcai
 {
 	namespace factory
 	{
 		/*
 		object factory
-		*/		
-		class IObjectFactory
+		*/
+		class IBehaviorFactory
 		{
 		public :
-			IObjectFactory() {}
-			virtual ~IObjectFactory() {}
+			IBehaviorFactory() {}			
+			virtual ~IBehaviorFactory() {}
 
+			/*
+			*/
 			virtual bool StartUp() = 0;
-
+			/*
+			*/
 			virtual bool Processing() = 0;
+			/*
+			*/
 			virtual bool Stop() = 0;
 
+			/*
+			*/
 			virtual bool CleanUp() = 0;
 		};
 	}

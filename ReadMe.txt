@@ -11,6 +11,10 @@ Please write.
 Please update your project to 'Point in the wrong part.txt' where you need to point out or modify the code.
 It helps me a lot. Thank you.)
 
-========================================================================
-    콘솔 응용 프로그램 : AI_Test 프로젝트 개요
-========================================================================
+=========================================================
+'Point out the wrong part.txt' 작성 예시(write example)
+=========================================================
+author Nick : john
+advice : lovecookie, your code is useless.
+
+
