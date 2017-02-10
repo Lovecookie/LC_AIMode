@@ -1,9 +1,8 @@
 #pragma once
 
 #include "IFactoryObject.h"
-#include "../BehaviorTree/TaskNode.h"
 
-namespace lcai
+namespace rcai
 {
 	namespace factory
 	{

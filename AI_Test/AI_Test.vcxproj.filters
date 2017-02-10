@@ -26,15 +26,6 @@
     <ClInclude Include="Factory\BaseBehaviorFactory.h">
       <Filter>Factory</Filter>
     </ClInclude>
-    <ClInclude Include="BehaviorTree\ICondtionTask.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviorTree\IActionTask.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviorTree\TaskNode.h">
-      <Filter>BehaviorTree</Filter>
-    </ClInclude>
     <ClInclude Include="BehaviorTree\SelectTask.h">
       <Filter>BehaviorTree</Filter>
     </ClInclude>
@@ -52,6 +43,15 @@
     </ClInclude>
     <ClInclude Include="Factory\FactoryObjectManagement.h">
       <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\ActionTask.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\CondtionTask.h">
+      <Filter>BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorTree\ITaskNode.h">
+      <Filter>BehaviorTree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

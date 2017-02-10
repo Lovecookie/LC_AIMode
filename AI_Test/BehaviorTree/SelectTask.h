@@ -1,28 +1,32 @@
 #pragma once
 
+class IFactoryObject;
+class ITaskNode;
 
-
-namespace lcai
+namespace rcai
 {
-	class IBehaviorFactory;
-
 	/*
 		behivor selector
 	*/
-	template<class FACTORY = IBehaviorFactory>
-	class SelectTask : public TaskNode<FACTORY>
+	template<class TASK_OBJECT>
+	class SelectTask : public ITaskNode<TASK_OBJECT>
 	{
 	public:
-
-		SelectTask():TaskNode<FACTORY>() {}
+		SelectTask():ITaskNode<TASK_OBJECT>() {}
 		virtual ~SelectTask() {};
 
 		/*
 		*/
-		bool Process()
-		{
-			return _objectFactory->Process();
-		}
+		virtual bool	Process();
 	};
+
+
+	/*
+	*/
+	template<class TASK_OBJECT>
+	bool SelectTask<TASK_OBJECT>::Process()
+	{	
+		return true;
+	}
 
 }

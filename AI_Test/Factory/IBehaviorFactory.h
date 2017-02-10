@@ -1,9 +1,7 @@
 #pragma once
 
 
-
-
-namespace lcai
+namespace rcai
 {
 	namespace factory
 	{
@@ -29,6 +27,10 @@ namespace lcai
 			/*
 			*/
 			virtual bool CleanUp() = 0;
+
+		private:
+
+
 		};
 	}
 }

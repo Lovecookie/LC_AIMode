@@ -16,4 +16,8 @@
 
 #include "./Factory/BaseBehaviorFactory.h"
 #include "./Factory/BaseFactoryObject.h"
+#include "./Factory/IBehaviorFactory.h"
 #include "./Factory/FactoryObjectManagement.h"
+#include "./BehaviorTree/ITaskNode.h"
+#include "./BehaviorTree/SelectTask.h"
+#include "./BehaviorTree/SequenceTask.h"
