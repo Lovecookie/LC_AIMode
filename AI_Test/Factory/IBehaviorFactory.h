@@ -22,11 +22,7 @@ namespace rcai
 			virtual bool Processing() = 0;
 			/*
 			*/
-			virtual bool Stop() = 0;
-
-			/*
-			*/
-			virtual bool CleanUp() = 0;
+			virtual bool Release() = 0;
 
 		private:
 

@@ -2,18 +2,28 @@
 //
 
 #include "stdafx.h"
-#include "Factory\BaseBehaviorFactory.h"
-#include "BehaviorTree\SelectTask.h"
+
 
 
 int main()
 {	
+	rcai::factory::BehaviorPhase	behaviorPhase;
+	behaviorPhase.StartUp();
+
+	behaviorPhase.SetHeadTask(new rcai::SelectTask<int>());
+	
+	int leftIndex = behaviorPhase.ApplyBehaviorTask(new rcai::SelectTask<int>(), 0);
+	int rightIndex = behaviorPhase.ApplyBehaviorTask(new rcai::SelectTask<int>(), 0);
+	
+	behaviorPhase.ApplyBehaviorTask(new rcai::SelectTask<int>(), leftIndex);
+	behaviorPhase.ApplyBehaviorTask(new rcai::SelectTask<int>(), rightIndex);	
+
 	rcai::factory::BaseBehaviorFactory<int> behaviorFactory;
-	behaviorFactory.StartUp();
+	behaviorFactory.AttachPhase(rcai::factory::EPhase::PHASE_1, &behaviorPhase);
 
-	auto firstTask = new rcai::SelectTask<int>();
-	behaviorFactory.ApplyHeadTask(firstTask);
+	behaviorFactory.Processing();
 
+	behaviorFactory.Release();
 
 	getchar();
 

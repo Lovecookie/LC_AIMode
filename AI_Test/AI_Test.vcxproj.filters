@@ -53,6 +53,9 @@
     <ClInclude Include="BehaviorTree\ITaskNode.h">
       <Filter>BehaviorTree</Filter>
     </ClInclude>
+    <ClInclude Include="Factory\BehaviorPhase.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -62,6 +65,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Factory\BaseBehaviorFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory\BehaviorPhase.cpp">
       <Filter>Factory</Filter>
     </ClCompile>
   </ItemGroup>

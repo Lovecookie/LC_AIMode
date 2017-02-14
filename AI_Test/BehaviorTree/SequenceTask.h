@@ -8,23 +8,32 @@ namespace rcai
 	/*
 		behivor sequencer
 	*/
-	template<class TASK_OBJECT>
-	class SequenceTask : public ITaskNode<TASK_OBJECT>
+	template<class TASK_UNIT>
+	class SequenceTask : public ITaskNode
 	{
 	public :
-		SequenceTask():ITaskNode<TASK_OBJECT>() {}
+		SequenceTask():ITaskNode(ETaskNodeName::TASK_SEQUENCE) {}
 		virtual ~SequenceTask() {}
 
 		/*			
 		*/
 		virtual bool Process();	
+
+	protected :
+		TASK_UNIT* _taskObject;
 	};
 
 
-	template<class TASK_OBJECT>
-	bool SequenceTask<TASK_OBJECT>::Process()
+	template<class TASK_UNIT>
+	bool SequenceTask<TASK_UNIT>::Process()
 	{
-		return true;
+		for (auto element : _childs)
+		{
+			if (false == element->Process())
+				break;
+		}
+
+		return false;
 	}
 
 

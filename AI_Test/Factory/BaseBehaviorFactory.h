@@ -1,63 +1,71 @@
 #pragma once
 
-//#include <array>
 #include <vector>
-#include "../BehaviorTree/ITaskNode.h"
-#include "../BehaviorTree/SelectTask.h"
-#include "IBehaviorFactory.h"
-#include "IFactoryObject.h"
 
+class BehaviorPhase;
 
 namespace rcai
 {
 	namespace factory
 	{
-		enum EBehaviorNumber : int
+		enum EPhase : int32_t
 		{
-			BEHAVIOR_HEAD = 0,
+			PHASE_BEGIN = 0,
+			PHASE_1 = 0,
+			PHASE_2 = 1,
+			PHASE_3 = 2,
+			PHASE_4 = 3,
+			PHASE_5 = 4,
+			PHASE_6 = 5,
+			PHASE_7 = 6,
+			PHASE_8 = 7,
+			PHASE_9 = 8,
+			PHASE_10 = 9,
+			PHASE_END,
 		};
 
 		/*
 		*/
-		template<class TASK_OBJECT>
+		template<class TASK_UNIT>
 		class BaseBehaviorFactory : public IBehaviorFactory
 		{
 		public:
 			BaseBehaviorFactory();
-			BaseBehaviorFactory(TASK_OBJECT* inObject);
+			BaseBehaviorFactory(TASK_UNIT* inObject);
 			virtual ~BaseBehaviorFactory();
 			virtual bool StartUp();
 			virtual bool Processing();
-			virtual bool Stop();
-
 			virtual bool Release();
+			
+			void		SetPhase(EPhase phase) { _currentPhase = phase; }
+			void		SetObject(TASK_UNIT* inObject) { _factoryUnit = inObject; }
+			TASK_UNIT*	GetObject() { return _factoryUnit; }
+			bool		AttachPhase(EPhase phaseType, BehaviorPhase* part);
 
-			void SetObject(TASK_OBJECT* inObject) { _factoryUnit = inObject; }
+		public :
 
-			void ApplyHeadTask(ITaskNode<TASK_OBJECT>* inTask);
-			void ApplyBehaviorTask(ITaskNode<TASK_OBJECT*>* inTask, int parentTask);
+			std::string		LatlyErrorMessage;
 
 		protected:
-			TASK_OBJECT*							_factoryUnit;
-			std::vector<ITaskNode<TASK_OBJECT>*>	_behaviorTasks;
-			std::vector<int>						_parentNumbers;
+			TASK_UNIT*	_factoryUnit = nullptr;
+			EPhase		_currentPhase;
 
-			int										_nextTaskNumber = 0;
+			std::vector<BehaviorPhase*>	_behaviorPhase;			
 		};
+
 
 		/*
 		*/
-		template<class TASK_OBJECT>
-		BaseBehaviorFactory<TASK_OBJECT>::BaseBehaviorFactory()
-			:IBehaviorFactory(),
-			_factoryUnit(nullptr)
+		template<class TASK_UNIT>
+		BaseBehaviorFactory<TASK_UNIT>::BaseBehaviorFactory()
+			:IBehaviorFactory()
 		{
 		}
 
 		/*
 		*/
-		template<class TASK_OBJECT>
-		BaseBehaviorFactory<TASK_OBJECT>::BaseBehaviorFactory(TASK_OBJECT* inObject)
+		template<class TASK_UNIT>
+		BaseBehaviorFactory<TASK_UNIT>::BaseBehaviorFactory(TASK_UNIT* inObject)
 			:IBehaviorFactory(),
 			_factoryUnit(inObject)
 		{
@@ -66,85 +74,60 @@ namespace rcai
 
 		/*
 		*/
-		template<class TASK_OBJECT>
-		BaseBehaviorFactory<TASK_OBJECT>::~BaseBehaviorFactory()
-		{
-		}
-
-
-		/*
-		*/
-		template<class TASK_OBJECT>
-		bool BaseBehaviorFactory<TASK_OBJECT>::StartUp()
+		template<class TASK_UNIT>
+		BaseBehaviorFactory<TASK_UNIT>::~BaseBehaviorFactory()
 		{	
-			ITaskNode<TASK_OBJECT>* newTask = new SelectTask<TASK_OBJECT>();
-			newTask->_BehaviorNumber = _nextTaskNumber++;
+			Release();
+		}
 
-			_behaviorTasks.push_back(newTask);
-			_parentNumbers.push_back(0);
 
+		/*
+		*/
+		template<class TASK_UNIT>
+		bool BaseBehaviorFactory<TASK_UNIT>::StartUp()
+		{	
 			return true;
 		}
 
 		/*
 		*/
-		template<class TASK_OBJECT>
-		bool BaseBehaviorFactory<TASK_OBJECT>::Processing()
-		{
-
-			return true;
+		template<class TASK_UNIT>
+		bool BaseBehaviorFactory<TASK_UNIT>::Processing()
+		{	
+			return _behaviorPhase[_currentPhase]->Processing();			
 		}
 
 		/*
 		*/
-		template<class TASK_OBJECT>
-		bool BaseBehaviorFactory<TASK_OBJECT>::Stop()
+		template<class TASK_UNIT>
+		bool BaseBehaviorFactory<TASK_UNIT>::Release()
 		{
+			if (_behaviorPhase.empty())
+				return false;
 
-			return true;
-		}
-
-		/*
-		*/
-		template<class TASK_OBJECT>
-		bool BaseBehaviorFactory<TASK_OBJECT>::Release()
-		{
-			for (auto element : _behaviorTasks)
+			for (auto element : _behaviorPhase)
 			{
-				element->Clear();
-				delete element;
-				element = nullptr;
+				element->Release();
 			}
 
-			_behaviorTasks.clear();
+			_behaviorPhase.clear();
 			return true;
 		}
 
 		/*
 		*/
-		template<class TASK_OBJECT>
-		void BaseBehaviorFactory<TASK_OBJECT>::ApplyHeadTask(ITaskNode<TASK_OBJECT>* inTask)
-		{	
-			inTask->_BehaviorNumber = _nextTaskNumber++;
-			_behaviorTasks[0]->ApplyTask(inTask->_BehaviorNumber);
-
-			_behaviorTasks.push_back(inTask);
-		}
-
-		/*
-		*/
-		template<class TASK_OBJECT>
-		void BaseBehaviorFactory<TASK_OBJECT>::ApplyBehaviorTask(ITaskNode<TASK_OBJECT*>* inTask, int parentTask)
+		template<class TASK_UNIT>
+		bool BaseBehaviorFactory<TASK_UNIT>::AttachPhase(EPhase phaseType, BehaviorPhase* part)
 		{
-			if (_behaviorTasks.size() < parentTask)
-				return;
+			if (_behaviorPhase.size() < phaseType)
+			{
+				LatlyErrorMessage = "overflow phaseType error";
+				return false;
+			}
 
-			inTask->_BehaviorNumber = _nextTaskNumber++;
-			_behaviorTasks[parentTask]->ApplyTask(inTask->_BehaviorNumber);
-
-			_behaviorTasks.push_back(inTask);
+			_behaviorPhase.push_back(part);
+			return true;
 		}
-
 
 	}
 }

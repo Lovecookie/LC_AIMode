@@ -151,12 +151,14 @@
     <ClInclude Include="Factory\BaseFactoryObject.h" />
     <ClInclude Include="Factory\FactoryObjectManagement.h" />
     <ClInclude Include="Factory\IBehaviorFactory.h" />
+    <ClInclude Include="Factory\BehaviorPhase.h" />
     <ClInclude Include="Factory\IFactoryObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factory\BaseBehaviorFactory.cpp" />
+    <ClCompile Include="Factory\BehaviorPhase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
